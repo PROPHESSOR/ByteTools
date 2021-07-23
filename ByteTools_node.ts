@@ -134,7 +134,7 @@ export default class ByteTools {
         return tmp;
     }
 
-    readCharString(length = -1) {
+    readCharString(length = -1, trimZeros=false) {
         let string = '';
 
         if (length < 0) {
@@ -147,7 +147,11 @@ export default class ByteTools {
             }
         } else {
             for (let i = 0; i < length; i++) {
-                string += String.fromCharCode(this.readUInt8());
+                const code = this.readUInt8();
+
+                if (trimZeros && code === 0) continue;
+
+                string += String.fromCharCode(code);
             }
         }
 
