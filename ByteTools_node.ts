@@ -134,6 +134,22 @@ export default class ByteTools {
         return tmp;
     }
 
+    readFloatLE() {
+        const tmp = this.buffer.readFloatLE(this.offset);
+
+        this.offset += 4;
+
+        return tmp;
+    }
+
+    readFloatBE() {
+        const tmp = this.buffer.readFloatBE(this.offset);
+
+        this.offset += 4;
+
+        return tmp;
+    }
+
     readCharString(length = -1, trimZeros=false) {
         let string = '';
 
