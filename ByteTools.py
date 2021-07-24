@@ -1,7 +1,10 @@
 # Copyright (c) PROPHESSOR 2019-2020
 
+import struct
+from typing import BinaryIO
+
 class ByteTools():
-    def __init__(self, stream):
+    def __init__(self, stream: BinaryIO):
         self.stream = stream
         self.order = 'little'
 
@@ -10,6 +13,13 @@ class ByteTools():
             return self.order
 
         self.order = order
+
+    def seek(self, offset: int, mode='START'):
+        whence = 0
+
+        if mode == 'CUR': whence = 1
+
+        self.stream.seek(offset, whence)
 
     def readASCIIString(self, length):
         return self.stream.read(length).decode('ascii')
@@ -40,3 +50,6 @@ class ByteTools():
     def readInt16(self): return self.readInt(2)
     def readInt32(self): return self.readInt(4)
     def readInt64(self): return self.readInt(8)
+
+    def readFloat(self):
+        return struct.unpack('f', self.getBytes(4))
