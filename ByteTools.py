@@ -22,10 +22,10 @@ class ByteTools():
         self.stream.seek(offset, whence)
 
     def readASCIIString(self, length):
-        return self.stream.read(length).decode('ascii')
+        return self.stream.read(length).decode('ascii', 'ignore')
 
     def readUnicodeString(self, length):
-        return self.stream.read(length).decode('utf-8')
+        return self.stream.read(length).decode('utf-8', 'ignore')
 
     def readString(self, length): return self.readUnicodeString(length)
 
