@@ -11,13 +11,13 @@ class ByteTools():
 
         self.order = order
 
-    def parseASCIIString(self, length):
+    def readASCIIString(self, length):
         return self.stream.read(length).decode('ascii')
 
-    def parseUnicodeString(self, length):
+    def readUnicodeString(self, length):
         return self.stream.read(length).decode('utf-8')
 
-    def parseString(self, length): return self.parseUnicodeString(length)
+    def readString(self, length): return self.readUnicodeString(length)
 
     def getBytes(self, x):
         bytes = self.stream.read(x)
@@ -26,17 +26,17 @@ class ByteTools():
 
         return bytes
 
-    def parseUInt(self, x):
+    def readUInt(self, x):
         return int.from_bytes(self.getBytes(x), byteorder=self.order, signed=False)
 
-    def parseUInt8(self):  return self.parseUInt(1)
-    def parseUInt16(self): return self.parseUInt(2)
-    def parseUInt32(self): return self.parseUInt(4)
+    def readUInt8(self):  return self.readUInt(1)
+    def readUInt16(self): return self.readUInt(2)
+    def readUInt32(self): return self.readUInt(4)
 
-    def parseInt(self, x):
+    def readInt(self, x):
         return int.from_bytes(self.getBytes(x), byteorder=self.order, signed=True)
 
-    def parseInt8(self):  return self.parseInt(1)
-    def parseInt16(self): return self.parseInt(2)
-    def parseInt32(self): return self.parseInt(4)
-    def parseInt64(self): return self.parseInt(8)
+    def readInt8(self):  return self.readInt(1)
+    def readInt16(self): return self.readInt(2)
+    def readInt32(self): return self.readInt(4)
+    def readInt64(self): return self.readInt(8)
